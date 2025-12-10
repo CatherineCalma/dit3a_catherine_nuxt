@@ -22,20 +22,23 @@
   </v-card>
 </template>
 
+
 <script setup>
+   const { data: category } = await useFetch('http://localhost:1337/api/categories');
    
-  const { data: category } = await useFetch('http://localhost:1337/api/categories');
 
   const search = ref('')
   const headers = [
+    {
+      align: 'start',
+      key: 'name',
+      sortable: false,
     
-    { key: 'category_name', title: 'Category' },
+    },
+    { key: 'category_name', title: 'Category Name' },
     { key: 'description', title: 'Description' },
-    { key: 'createdAt', title: 'Date Created' },
-
-
+    { key: 'category_id', title: 'Category ID' },
+    { key: 'date_created', title: 'Date Created' },
   ]
-  const desserts = [
-    
-  ]
+  
 </script>
