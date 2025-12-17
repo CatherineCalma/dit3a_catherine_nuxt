@@ -29,7 +29,7 @@
     <v-app-bar-nav-icon @click.stop="drawer =! drawer"></v-app-bar-nav-icon>
   </template>
 
-  <v-app-bar-title>Application Bar</v-app-bar-title>
+  <v-app-bar-title>Inventory Management System</v-app-bar-title>
 </v-app-bar>
 
 <v-main>
