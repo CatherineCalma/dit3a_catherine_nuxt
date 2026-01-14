@@ -16,6 +16,7 @@
 
     <!-- Selectable Category-->
      <v-select
+     v-model="selectedCategory"
         clearable
         label="Select"
        :items="category.data"
@@ -27,7 +28,7 @@
 
     <v-data-table
       :headers="headers"
-      :items="inventory.data"
+      :items="filteredCategory"
       :search="search"
     ></v-data-table>
   </v-card>
@@ -38,6 +39,8 @@
    const { data: inventory } = await useFetch('http://localhost:1337/api/inventories?populate=category');
 
    const { data: category } = await useFetch('http://localhost:1337/api/categories');
+
+   const selectedCategory = ref(null);
 
   const search = ref('')
   const headers = [
@@ -56,4 +59,17 @@
     { key: 'acquisition_date', title: 'Acquisition Date' },
 
   ]
+
+  const filteredCategory = computed(() =>{
+    // Show all inventory products if not selected category 
+
+    if(!selectedCategory.value){
+      return inventory.value.data;
+    }else{
+      return inventory.value.data.filter(item =>
+        items.category.id == selectedCategory.value
+      )
+    }
+
+  })
 </script>
